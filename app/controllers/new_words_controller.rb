@@ -1,6 +1,6 @@
 class NewWordsController < ApplicationController
   def index
-    @words = NewWord.all
+    @words = NewWord.ransack(params[:q]).result
     render json: {
       success: true,
       data: ActiveModel::SerializableResource.new(@words)
